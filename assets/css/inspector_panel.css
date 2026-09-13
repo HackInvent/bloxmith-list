@@ -1,0 +1,37 @@
+.cw-list-inspector {
+  display: grid;
+  gap: 12px;
+}
+
+.cw-list-inspector .list-items-editor {
+  display: grid;
+  gap: 10px;
+}
+
+.cw-list-inspector .cw-list-inspector-view {
+  display: grid;
+  gap: 12px;
+}
+
+.cw-list-inspector .cw-list-apply-row {
+  justify-content: flex-end;
+}
+
+.cw-list-inspector .list-item-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: start;
+}
+
+.cw-list-inspector .list-item-row textarea {
+  min-height: 58px;
+  margin: 0;
+  resize: vertical;
+}
+
+.cw-list-inspector .list-item-actions {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}

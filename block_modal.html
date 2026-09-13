@@ -1,0 +1,42 @@
+<div class="modal-panel list-items-modal cw-list-modal" data-block-runtime-refresh="autonomous" role="dialog" aria-modal="true" aria-labelledby="listItemsModalTitle">
+  <div class="modal-header">
+    <div>
+      <span class="panel-kicker">Bloc Liste</span>
+      <h2 id="listItemsModalTitle">Éditer les items</h2>
+    </div>
+    <div class="modal-actions">
+      <button class="solid-btn" data-list-action="apply" data-block-apply type="button" disabled>Appliquer</button>
+      <button class="ghost-btn" data-list-action="close" type="button">Fermer</button>
+    </div>
+  </div>
+  <div class="list-items-modal-body" data-list-modal-root>
+    <div class="list-items-modal-toolbar">
+      <div>
+        <span data-list-context>{{ title }}</span>
+        <span class="list-items-modal-hint">Une ligne = un item. Ctrl+Enter pour appliquer.</span>
+      </div>
+      <span class="list-items-modal-count" data-list-count>{{ count_label }}</span>
+    </div>
+    <section class="ports-editor-section">
+      <div class="ports-editor-header"><span class="group-label">Identité</span></div>
+      <div class="field-group">
+        <label>Nom du bloc</label>
+        <input data-block-title-field type="text" autocomplete="off" value="{{ title }}" />
+      </div>
+    </section>
+    <div class="list-items-modal-actions">
+      <button class="ghost-btn" data-list-action="remove-empty" type="button">Supprimer lignes vides</button>
+      <button class="ghost-btn danger-btn" data-list-action="clear" type="button">Tout vider</button>
+    </div>
+    <div class="list-items-editor-shell">
+      <pre class="list-items-line-numbers" data-list-line-numbers aria-hidden="true">{{ line_numbers }}</pre>
+      <textarea
+        class="list-items-modal-textarea"
+        data-list-textarea
+        spellcheck="false"
+        wrap="soft"
+        placeholder="Un item par ligne..."
+      >{{ items_text }}</textarea>
+    </div>
+  </div>
+</div>
