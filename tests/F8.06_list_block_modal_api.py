@@ -31,7 +31,7 @@ from block_test_packages import install_test_package, release_key, surface_paylo
 
 def main() -> None:
     with isolated_server() as server:
-        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        # Surfaces are release assets: a bundled kind serves none of them.
         model = install_test_package(server, "list")
         key = quote(release_key(model), safe="")
         served = lambda payload, suffix: next(
@@ -72,8 +72,8 @@ def main() -> None:
             },
         )
         items = applied.get("node_patch", {}).get("list", {}).get("items")
-        expect(items == [{"item": "toto"}, 42, "texte long"], "Le bloc List doit parser le JSON structuré côté block.py.")
-        expect(applied.get("close_modal") is False, "Appliquer ne doit pas fermer le modal List.")
+        expect(items == [{"item": "toto"}, 42, "texte long"], "The List block must parse the structured JSON in block.py.")
+        expect(applied.get("close_modal") is False, "Apply must not close the List modal.")
     print("[ok] F8.06_list_block_modal_api")
 
 

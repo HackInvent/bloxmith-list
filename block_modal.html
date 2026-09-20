@@ -1,26 +1,26 @@
 <div class="modal-panel list-items-modal cw-list-modal" data-block-runtime-refresh="autonomous" role="dialog" aria-modal="true" aria-labelledby="listItemsModalTitle">
   <div class="modal-header">
     <div>
-      <span class="panel-kicker">Bloc Liste</span>
-      <h2 id="listItemsModalTitle">Éditer les items</h2>
+      <span class="panel-kicker">List block</span>
+      <h2 id="listItemsModalTitle">Edit the items</h2>
     </div>
     <div class="modal-actions">
-      <button class="solid-btn" data-list-action="apply" data-block-apply type="button" disabled>Appliquer</button>
-      <button class="ghost-btn" data-list-action="close" type="button">Fermer</button>
+      <button class="solid-btn" data-list-action="apply" data-block-apply type="button" disabled>Apply</button>
+      <button class="ghost-btn" data-list-action="close" type="button">Close</button>
     </div>
   </div>
   <div class="list-items-modal-body" data-list-modal-root>
     <div class="list-items-modal-toolbar">
       <div>
         <span data-list-context>{{ title }}</span>
-        <span class="list-items-modal-hint">Une ligne = un item. Ctrl+Enter pour appliquer.</span>
+        <span class="list-items-modal-hint">One line is one item. Ctrl+Enter applies.</span>
       </div>
       <span class="list-items-modal-count" data-list-count>{{ count_label }}</span>
     </div>
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Identité</span></div>
+      <div class="ports-editor-header"><span class="group-label">Identity</span></div>
       <div class="field-group">
-        <label>Nom du bloc</label>
+        <label>Block name</label>
         <input data-block-title-field type="text" autocomplete="off" value="{{ title }}" />
       </div>
     </section>
@@ -35,7 +35,7 @@
         data-list-textarea
         spellcheck="false"
         wrap="soft"
-        placeholder="Un item par ligne..."
+        placeholder="One item per line..."
       >{{ items_text }}</textarea>
     </div>
   </div>

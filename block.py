@@ -288,7 +288,7 @@ class ListBlock(BlockDefinition):
         if empty_count:
             return (
                 f"{item_label} · {empty_count} ligne{'s' if empty_count > 1 else ''} "
-                f"vide{'s' if empty_count > 1 else ''} ignorée{'s' if empty_count > 1 else ''}"
+                f"vide{'s' if empty_count > 1 else ''} ignored{'s' if empty_count > 1 else ''}"
             )
         return item_label
 
@@ -323,7 +323,7 @@ class ListBlock(BlockDefinition):
             items: Items value used by this block helper.
         """
         if not items:
-            return '<div class="ports-editor-empty">Liste vide. Ajoute un item pour émettre des données.</div>'
+            return '<div class="ports-editor-empty">Empty list. Add an item to emit data.</div>'
         rows = []
         total = len(items)
         for index, item in enumerate(items):
@@ -347,7 +347,7 @@ class ListBlock(BlockDefinition):
                         ),
                         (
                             f'    <button class="ghost-btn port-delete-btn" type="button" '
-                            f'data-list-inspector-action="delete" data-index="{index}">Supprimer</button>'
+                            f'data-list-inspector-action="delete" data-index="{index}">Delete</button>'
                         ),
                         "  </div>",
                         "</div>",

@@ -59,7 +59,7 @@ def test_list_modal_generic_binding(page, server, _blocking_errors) -> None:
     )
 
     node = graph_node_by_id(page, node_id)
-    expect(node.get("config", {}).get("items") == ["alpha", "beta"], "Le modal List n'a pas persisté les items après Apply.")
+    expect(node.get("config", {}).get("items") == ["alpha", "beta"], "The List modal did not persist the items after Apply.")
 
 
 if __name__ == "__main__":

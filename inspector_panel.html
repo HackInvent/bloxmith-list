@@ -19,36 +19,36 @@
     <div class="cw-list-inspector-view" data-list-inspector-view="items">
       <div class="ports-editor-section">
         <div class="ports-editor-header">
-          <span class="group-label">Items de la liste</span>
+          <span class="group-label">List items</span>
           <button class="ghost-btn add-port-btn" data-list-inspector-action="add" type="button">
-            + Ajouter un item
+            + Add an item
           </button>
         </div>
         <div class="list-items-editor" data-list-items-editor>{{ rows_html }}</div>
       </div>
       <div class="inspector-actions cw-list-apply-row">
-        <button class="solid-btn" data-list-inspector-apply type="button" disabled>Appliquer la liste</button>
+        <button class="solid-btn" data-list-inspector-apply type="button" disabled>Apply the list</button>
       </div>
       <div class="inspector-copy">
-        Modifie les items puis clique sur <strong>Appliquer la liste</strong>. Chaque ligne est parsée comme JSON si possible,
-        puis enveloppée dans <code>{ "item": ... }</code>.
+        Edit the items, then click <strong>Apply the list</strong>. Every line is parsed as JSON when possible,
+        then wrapped in <code>{ "item": ... }</code>.
       </div>
     </div>
 
     <div class="cw-list-inspector-view hidden" data-list-inspector-view="attributes">
       <div class="field-group {{ title_hidden }}">
-        <label>Nom du node</label>
+        <label>Node name</label>
         <input data-node-title-input type="text" placeholder="{{ node_title_placeholder }}" value="{{ node_title }}" />
       </div>
 
       <div class="inspector-actions {{ actions_hidden }}">
-        <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button">Dupliquer</button>
-        <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button">Supprimer le bloc</button>
+        <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button">Duplicate</button>
+        <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button">Delete the block</button>
       </div>
 
       <div class="inspector-copy">
-        Le bloc émet une liste JSON au lancement du run.
-        Format de sortie :
+        The block emits a JSON list when the run starts.
+        Output format:
         <pre>[
   { "item": "item 1" },
   { "item": { "toto": "toto" } },
@@ -61,23 +61,23 @@
   <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports">
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Entrées</span>
+        <span class="group-label">Inputs</span>
         <span class="ports-editor-actions">
           <button class="ghost-btn add-port-btn {{ add_mcp_input_hidden }}" data-add-mcp-input-port type="button" {{ add_mcp_input_disabled }}>+ MCP</button>
-          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Ajouter une entrée</button>
+          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Add an input</button>
         </span>
       </div>
       <div class="ports-editor-list">{{ inputs_html }}</div>
     </div>
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Sorties</span>
-        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }}>+ Ajouter une sortie</button>
+        <span class="group-label">Outputs</span>
+        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }}>+ Add an output</button>
       </div>
       <div class="ports-editor-list">{{ outputs_html }}</div>
     </div>
     <div class="inspector-copy">
-      Les noms sont normalisés automatiquement : minuscules, espaces remplacés par <code>_</code>.
+      Names are normalized automatically: lowercase, spaces replaced with <code>_</code>.
     </div>
   </div>
 </div>

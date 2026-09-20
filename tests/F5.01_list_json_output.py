@@ -7,11 +7,11 @@
 # Created Date: 2024-08-26
 # -----------------------------------------------------------------------------
 
-"""F5.01 - Bloc list en sortie JSON wrapper.
+"""F5.01 - List block with a JSON wrapper output.
 
-Le test lance un graphe `list -> display` dans un serveur isolé et vérifie que
-le bloc list émet une liste JSON d'objets `{ "item": ... }`, consommable par
-les blocs aval. Les lignes JSON sont parsées avant wrapping.
+The test runs a `list -> display` graph in an isolated server and checks that
+the list block emits a JSON list of `{ "item": ... }` objects, consumable by
+downstream blocks. JSON lines are parsed before wrapping.
 """
 
 # Test cases:
@@ -60,7 +60,7 @@ def main() -> None:
         )
         created = create_run_api(server, document)
         run = wait_for_run_terminal(server, str(created.get("run_id") or ""))
-        expect(run.get("status") == "success", "Le run list -> display doit réussir.")
+        expect(run.get("status") == "success", "The list -> display run must succeed.")
 
         output = run.get("output_values", {}).get("list-1:1", {})
         parsed = json.loads(str(output.get("value") or "[]"))
@@ -68,8 +68,8 @@ def main() -> None:
             parsed == [{"item": "alpha"}, {"item": {"toto": "toto"}}, {"item": 42}],
             "La sortie list wrapper n'est pas le JSON attendu.",
         )
-        expect(output.get("content_type") == "application/json", "Le content_type list doit être application/json.")
-        expect("alpha" in str(run.get("worker_rows", {}).get("display-1", {}).get("received") or ""), "Display ne reçoit pas la liste.")
+        expect(output.get("content_type") == "application/json", "The list content_type must be application/json.")
+        expect("alpha" in str(run.get("worker_rows", {}).get("display-1", {}).get("received") or ""), "Display does not receive the list.")
     print("[ok] F5.01_list_json_output")
 
 

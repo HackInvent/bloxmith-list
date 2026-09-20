@@ -53,7 +53,7 @@ def ui_action(server, node: dict, action: str, values: dict) -> dict:
 
 def main() -> None:
     with isolated_server() as server:
-        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        # Surfaces are release assets: a bundled kind serves none of them.
         model = install_test_package(server, "list")
         key = quote(release_key(model), safe="")
         served = lambda payload, suffix: next(
@@ -62,12 +62,12 @@ def main() -> None:
         rendered = surface_payload(server, model, node, "inspector_panel")
         html = str(rendered.get("html") or "")
         expect("data-list-inspector-root" in html, "Le HTML inspecteur List doit venir du bloc.")
-        expect('data-list-inspector-tab="items"' in html, "Le panneau inspecteur List doit exposer l'onglet Liste.")
-        expect('data-list-inspector-tab="attributes"' in html, "Le panneau inspecteur List doit exposer l'onglet Attributs.")
+        expect('data-list-inspector-tab="items"' in html, "The List inspector panel must expose the List tab.")
+        expect('data-list-inspector-tab="attributes"' in html, "The List inspector panel must expose the Attributes tab.")
         expect('data-list-inspector-view="items"' in html, "Le panneau inspecteur List doit isoler la vue items.")
         expect('data-list-inspector-view="attributes"' in html, "Le panneau inspecteur List doit isoler la vue attributs.")
         expect("data-list-item-input" in html, "Le panneau inspecteur doit contenir les inputs d'items.")
-        expect("data-list-inspector-apply" in html, "Le panneau inspecteur List doit exposer le bouton Appliquer la liste.")
+        expect("data-list-inspector-apply" in html, "The List inspector panel must expose the Apply the list button.")
         assets = rendered.get("assets") or []
         for asset_path in ("assets/css/inspector_panel.css", "assets/js/inspector_panel.js"):
             with urlopen(f"{server.base_url}/api/blocks/{key}/assets/{served(rendered, asset_path)}", timeout=5) as response:
@@ -81,13 +81,13 @@ def main() -> None:
             {"items": ['{"x":1}', "beta"]},
         )
         items = updated.get("node_patch", {}).get("list", {}).get("items")
-        expect(items == [{"x": 1}, "beta"], "Update inspecteur List doit parser les items côté block.py.")
-        expect(updated.get("rerender_inspector") is False, "Update texte ne doit pas forcer un rerender inspecteur.")
+        expect(items == [{"x": 1}, "beta"], "The List inspector update must parse the items in block.py.")
+        expect(updated.get("rerender_inspector") is False, "A text update must not force an inspector rerender.")
 
         node = list_node(items)
         added = ui_action(server, node, "inspector_add_item", {"items": items})
         expect(added.get("node_patch", {}).get("list", {}).get("items") == [{"x": 1}, "beta", ""], "Add item incorrect.")
-        expect(added.get("rerender_inspector") is True, "Add item doit forcer un rerender inspecteur.")
+        expect(added.get("rerender_inspector") is True, "Add item must force an inspector rerender.")
 
         moved = ui_action(server, list_node(["a", "b", "c"]), "inspector_move_item", {"items": ["a", "b", "c"], "index": 2, "direction": "up"})
         expect(moved.get("node_patch", {}).get("list", {}).get("items") == ["a", "c", "b"], "Move item incorrect.")
