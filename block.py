@@ -94,24 +94,6 @@ class ListBlock(BlockDefinition):
         """
         return json.dumps(self.wrap_items(raw_items), ensure_ascii=False, indent=2)
 
-    def ui_assets(self, surface: str = "modal") -> list[dict[str, str]]:
-        """Return block-owned frontend assets for the requested UI surface.
-
-        Args:
-            surface: UI surface requesting assets.
-        """
-        if surface == "modal":
-            return [
-                {"kind": "css", "path": "assets/css/block_modal.css"},
-                {"kind": "js", "path": "assets/js/block_modal.js"},
-            ]
-        if surface == "inspector_panel":
-            return [
-                {"kind": "css", "path": "assets/css/inspector_panel.css"},
-                {"kind": "js", "path": "assets/js/inspector_panel.js"},
-            ]
-        return []
-
     def render_node_card(self, *, node: dict[str, Any], payload: dict[str, Any] | None = None) -> dict[str, Any]:
         """Render the List canvas card body from the block-owned template."""
 

@@ -1,7 +1,9 @@
 {
   "kind": "list",
   "version": "0.1.0",
-  "bloxsmith_compatibility": ["1.0.9"],
+  "bloxsmith_compatibility": [
+    "1.0.9"
+  ],
   "tested_with_bloxsmith": "1.0.9",
   "title": "Liste",
   "ports": {
@@ -11,17 +13,45 @@
         "id": 1,
         "name": "liste",
         "title": "Liste",
-        "emits": ["application/json", "message/*"],
+        "emits": [
+          "application/json",
+          "message/*"
+        ],
         "multiplicity": "many"
       }
     ]
   },
   "config": {
-    "items": ["item 1", "item 2"]
+    "items": [
+      "item 1",
+      "item 2"
+    ]
   },
   "runtime": {
     "initial_state": "ready",
     "active_worker": true,
     "generic_source": true
+  },
+  "ui_assets": {
+    "modal": [
+      {
+        "kind": "css",
+        "path": "assets/css/block_modal.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/block_modal.js"
+      }
+    ],
+    "inspector_panel": [
+      {
+        "kind": "css",
+        "path": "assets/css/inspector_panel.css"
+      },
+      {
+        "kind": "js",
+        "path": "assets/js/inspector_panel.js"
+      }
+    ]
   }
 }

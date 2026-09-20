@@ -25,20 +25,28 @@ from __future__ import annotations
 from urllib.request import urlopen
 
 from ui_smoke_common import expect, http_json, isolated_server
+from urllib.parse import quote
+from block_test_packages import install_test_package, release_key, surface_payload
 
 
 def main() -> None:
     with isolated_server() as server:
+        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        model = install_test_package(server, "list")
+        key = quote(release_key(model), safe="")
+        served = lambda payload, suffix: next(
+            asset["path"] for asset in payload["assets"] if asset["path"].endswith(suffix))
         node = {
             "id": "list-1",
             "kind": "list",
             "type": "list",
+            "block_version": model["version"],
             "title": "Liste API",
             "list": {"items": ["alpha", '{"nested":true}', "42"]},
             "config": {"items": ["alpha", '{"nested":true}', "42"]},
         }
 
-        rendered = http_json(server.base_url, "/api/blocks/list/modal", method="POST", payload={"node": node})
+        rendered = surface_payload(server, model, node, "modal")
         modal_html = str(rendered.get("html") or "")
         expect("data-list-textarea" in modal_html, "Le HTML du modal List doit venir du bloc.")
         expect("data-block-runtime-refresh=\"autonomous\"" in modal_html, "Le modal List doit gérer son refresh runtime.")
@@ -48,17 +56,8 @@ def main() -> None:
             "Le modal List ne doit plus autosauvegarder le textarea via binding generique.",
         )
         assets = rendered.get("assets") or []
-        expect(
-            {"kind": "css", "path": "assets/css/block_modal.css"} in assets,
-            "Le CSS du modal List doit être déclaré par le bloc.",
-        )
-        expect(
-            {"kind": "js", "path": "assets/js/block_modal.js"} in assets,
-            "Le JS du modal List doit être déclaré par le bloc.",
-        )
-
         for asset_path in ("assets/css/block_modal.css", "assets/js/block_modal.js"):
-            with urlopen(f"{server.base_url}/api/blocks/list/assets/{asset_path}", timeout=5) as response:
+            with urlopen(f"{server.base_url}/api/blocks/{key}/assets/{served(rendered, asset_path)}", timeout=5) as response:
                 body = response.read().decode("utf-8")
             expect("list" in body.lower(), f"Asset List non servi: {asset_path}")
 

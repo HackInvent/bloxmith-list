@@ -26,13 +26,16 @@ from __future__ import annotations
 from urllib.request import urlopen
 
 from ui_smoke_common import expect, http_json, isolated_server
+from urllib.parse import quote
+from block_test_packages import install_test_package, release_key, surface_payload
 
 
-def list_node(items: list[object]) -> dict:
+def list_node(items: list[object], version: str | None = None) -> dict:
     return {
         "id": "list-1",
         "kind": "list",
         "type": "list",
+        **({"block_version": version} if version else {}),
         "title": "Liste Inspecteur",
         "list": {"items": items},
         "config": {"items": items},
@@ -50,8 +53,13 @@ def ui_action(server, node: dict, action: str, values: dict) -> dict:
 
 def main() -> None:
     with isolated_server() as server:
-        node = list_node(["alpha", {"nested": True}, 42])
-        rendered = http_json(server.base_url, "/api/blocks/list/inspector-panel", method="POST", payload={"node": node})
+        # Les surfaces sont des assets de release : le bundled kind n'en sert aucun.
+        model = install_test_package(server, "list")
+        key = quote(release_key(model), safe="")
+        served = lambda payload, suffix: next(
+            asset["path"] for asset in payload["assets"] if asset["path"].endswith(suffix))
+        node = list_node(["alpha", {"nested": True}, 42], model["version"])
+        rendered = surface_payload(server, model, node, "inspector_panel")
         html = str(rendered.get("html") or "")
         expect("data-list-inspector-root" in html, "Le HTML inspecteur List doit venir du bloc.")
         expect('data-list-inspector-tab="items"' in html, "Le panneau inspecteur List doit exposer l'onglet Liste.")
@@ -61,17 +69,8 @@ def main() -> None:
         expect("data-list-item-input" in html, "Le panneau inspecteur doit contenir les inputs d'items.")
         expect("data-list-inspector-apply" in html, "Le panneau inspecteur List doit exposer le bouton Appliquer la liste.")
         assets = rendered.get("assets") or []
-        expect(
-            {"kind": "css", "path": "assets/css/inspector_panel.css"} in assets,
-            "Le CSS inspecteur List doit être déclaré par le bloc.",
-        )
-        expect(
-            {"kind": "js", "path": "assets/js/inspector_panel.js"} in assets,
-            "Le JS inspecteur List doit être déclaré par le bloc.",
-        )
-
         for asset_path in ("assets/css/inspector_panel.css", "assets/js/inspector_panel.js"):
-            with urlopen(f"{server.base_url}/api/blocks/list/assets/{asset_path}", timeout=5) as response:
+            with urlopen(f"{server.base_url}/api/blocks/{key}/assets/{served(rendered, asset_path)}", timeout=5) as response:
                 body = response.read().decode("utf-8")
             expect("list" in body.lower(), f"Asset inspecteur List non servi: {asset_path}")
 

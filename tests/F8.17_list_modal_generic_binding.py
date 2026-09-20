@@ -26,11 +26,14 @@ from ui_smoke_common import (
     run_playwright_smoke,
     wait_for_app_ready,
 )
+from block_test_packages import install_test_package, release_key
 
 
 def test_list_modal_generic_binding(page, server, _blocking_errors) -> None:
+    # Le modal est un module de release : la palette doit proposer la version installée.
+    model = install_test_package(server, "list")
     wait_for_app_ready(page, server.base_url)
-    node_id = create_node(page, "list")
+    node_id = create_node(page, release_key(model))
     node_locator(page, node_id).dblclick()
     page.wait_for_selector("[data-list-textarea]", timeout=10_000)
     page.wait_for_selector('[data-block-generic-modal-mounted="true"]', timeout=10_000)

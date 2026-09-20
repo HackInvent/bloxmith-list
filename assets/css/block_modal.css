@@ -1,10 +1,10 @@
-.cw-list-modal {
+[data-block-release="list@0.1.0"] .cw-list-modal {
   display: grid;
   grid-template-rows: auto 1fr;
   width: min(900px, 100%);
 }
 
-.cw-list-modal .list-items-modal-body {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-body {
   display: grid;
   grid-template-rows: auto auto minmax(0, 1fr);
   gap: 12px;
@@ -13,7 +13,7 @@
   overflow: auto;
 }
 
-.cw-list-modal .list-items-modal-toolbar {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-toolbar {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -23,16 +23,16 @@
   font-size: 0.86rem;
 }
 
-.cw-list-modal .list-items-modal-toolbar > div {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-toolbar > div {
   display: grid;
   gap: 5px;
 }
 
-.cw-list-modal .list-items-modal-hint {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-hint {
   display: block;
 }
 
-.cw-list-modal .list-items-modal-count {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-count {
   display: inline-flex;
   align-items: center;
   min-height: 28px;
@@ -46,14 +46,14 @@
   white-space: nowrap;
 }
 
-.cw-list-modal .list-items-modal-actions {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
   flex-wrap: wrap;
 }
 
-.cw-list-modal .list-items-editor-shell {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-editor-shell {
   display: grid;
   grid-template-columns: 54px minmax(0, 1fr);
   width: 100%;
@@ -68,19 +68,19 @@
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
 }
 
-.cw-list-modal .list-items-editor-shell:focus-within {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-editor-shell:focus-within {
   border-color: var(--accent);
   box-shadow: 0 0 0 4px rgba(106, 90, 249, 0.1);
 }
 
-.cw-list-modal .list-items-line-numbers,
-.cw-list-modal .list-items-modal-textarea {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-line-numbers,
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-textarea {
   font-family: "JetBrains Mono", "Fira Code", "SFMono-Regular", Consolas, monospace;
   font-size: 0.93rem;
   line-height: 1.55;
 }
 
-.cw-list-modal .list-items-line-numbers {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-line-numbers {
   min-height: 0;
   margin: 0;
   padding: 16px 12px 16px 0;
@@ -92,7 +92,7 @@
   user-select: none;
 }
 
-.cw-list-modal .list-items-modal-textarea {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-textarea {
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -110,17 +110,17 @@
   word-break: break-word;
 }
 
-.cw-list-modal .list-items-modal-textarea::placeholder {
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-textarea::placeholder {
   color: #9aa3bd;
 }
 
 @media (max-width: 720px) {
-  .cw-list-modal .list-items-editor-shell {
+  [data-block-release="list@0.1.0"] .cw-list-modal .list-items-editor-shell {
     grid-template-columns: 42px minmax(0, 1fr);
   }
 
-  .cw-list-modal .list-items-line-numbers,
-  .cw-list-modal .list-items-modal-textarea {
+  [data-block-release="list@0.1.0"] .cw-list-modal .list-items-line-numbers,
+[data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-textarea {
     font-size: 0.86rem;
   }
 }
