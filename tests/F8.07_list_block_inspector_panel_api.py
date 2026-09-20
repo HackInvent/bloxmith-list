@@ -7,12 +7,12 @@
 # Created Date: 2024-11-08
 # -----------------------------------------------------------------------------
 
-"""F8.07 - UI modulaire du panneau inspecteur List.
+"""F8.07 - Modular UI of the List inspector panel.
 
-Le test démarre un serveur isolé, demande le rendu du panneau inspecteur
-`list` depuis `block.py`, vérifie que ses assets déclarés sont servis, puis
-teste les actions structurées add/update/move/delete. Aucune donnée utilisateur
-n'est modifiée hors du serveur de test.
+The test starts an isolated server, renders the `list` inspector panel from
+`block.py`, checks that its declared assets are served, then exercises the
+structured add/update/move/delete actions. No user data is modified outside the
+test server.
 """
 
 # Test cases:
@@ -61,18 +61,18 @@ def main() -> None:
         node = list_node(["alpha", {"nested": True}, 42], model["version"])
         rendered = surface_payload(server, model, node, "inspector_panel")
         html = str(rendered.get("html") or "")
-        expect("data-list-inspector-root" in html, "Le HTML inspecteur List doit venir du bloc.")
+        expect("data-list-inspector-root" in html, "The List inspector HTML must come from the block.")
         expect('data-list-inspector-tab="items"' in html, "The List inspector panel must expose the List tab.")
         expect('data-list-inspector-tab="attributes"' in html, "The List inspector panel must expose the Attributes tab.")
-        expect('data-list-inspector-view="items"' in html, "Le panneau inspecteur List doit isoler la vue items.")
-        expect('data-list-inspector-view="attributes"' in html, "Le panneau inspecteur List doit isoler la vue attributs.")
-        expect("data-list-item-input" in html, "Le panneau inspecteur doit contenir les inputs d'items.")
+        expect('data-list-inspector-view="items"' in html, "The List inspector panel must isolate the items view.")
+        expect('data-list-inspector-view="attributes"' in html, "The List inspector panel must isolate the attributes view.")
+        expect("data-list-item-input" in html, "The inspector panel must contain the item inputs.")
         expect("data-list-inspector-apply" in html, "The List inspector panel must expose the Apply the list button.")
         assets = rendered.get("assets") or []
         for asset_path in ("assets/css/inspector_panel.css", "assets/js/inspector_panel.js"):
             with urlopen(f"{server.base_url}/api/blocks/{key}/assets/{served(rendered, asset_path)}", timeout=5) as response:
                 body = response.read().decode("utf-8")
-            expect("list" in body.lower(), f"Asset inspecteur List non servi: {asset_path}")
+            expect("list" in body.lower(), f"List inspector asset not served: {asset_path}")
 
         updated = ui_action(
             server,

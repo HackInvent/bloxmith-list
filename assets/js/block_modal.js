@@ -32,9 +32,9 @@ function getStats(value) {
  * @returns {string} Localized counter label.
  */
 function formatCount(stats) {
-  const itemLabel = `${stats.validCount} item${stats.validCount > 1 ? "s" : ""} valide${stats.validCount > 1 ? "s" : ""}`;
+  const itemLabel = `${stats.validCount} valid item${stats.validCount > 1 ? "s" : ""}`;
   if (stats.emptyCount > 0) {
-    return `${itemLabel} · ${stats.emptyCount} ligne${stats.emptyCount > 1 ? "s" : ""} vide${stats.emptyCount > 1 ? "s" : ""} ignored${stats.emptyCount > 1 ? "s" : ""}`;
+    return `${itemLabel} · ${stats.emptyCount} empty line${stats.emptyCount > 1 ? "s" : ""} ignored`;
   }
   return itemLabel;
 }

@@ -7,12 +7,11 @@
 # Created Date: 2024-10-02
 # -----------------------------------------------------------------------------
 
-"""F8.06 - UI modulaire du modal List.
+"""F8.06 - Modular UI of the List modal.
 
-Le test démarre un serveur isolé, demande le rendu du modal `list` depuis
-`block.py`, vérifie que ses assets déclarés sont servis, puis applique une
-modification sous forme JSON structurée. Aucune donnée utilisateur n'est
-modifiée hors du serveur de test.
+The test starts an isolated server, renders the `list` modal from `block.py`,
+checks that its declared assets are served, then applies a change as structured
+JSON. No user data is modified outside the test server.
 """
 
 # Test cases:
@@ -48,18 +47,18 @@ def main() -> None:
 
         rendered = surface_payload(server, model, node, "modal")
         modal_html = str(rendered.get("html") or "")
-        expect("data-list-textarea" in modal_html, "Le HTML du modal List doit venir du bloc.")
-        expect("data-block-runtime-refresh=\"autonomous\"" in modal_html, "Le modal List doit gérer son refresh runtime.")
-        expect("data-block-apply" in modal_html, "Le modal List doit exposer le bouton Appliquer.")
+        expect("data-list-textarea" in modal_html, "The List modal HTML must come from the block.")
+        expect("data-block-runtime-refresh=\"autonomous\"" in modal_html, "The List modal must own its runtime refresh.")
+        expect("data-block-apply" in modal_html, "The List modal must expose the Apply button.")
         expect(
             "data-block-config-field=\"items\"" not in modal_html,
-            "Le modal List ne doit plus autosauvegarder le textarea via binding generique.",
+            "The List modal must no longer autosave the textarea through the generic binding.",
         )
         assets = rendered.get("assets") or []
         for asset_path in ("assets/css/block_modal.css", "assets/js/block_modal.js"):
             with urlopen(f"{server.base_url}/api/blocks/{key}/assets/{served(rendered, asset_path)}", timeout=5) as response:
                 body = response.read().decode("utf-8")
-            expect("list" in body.lower(), f"Asset List non servi: {asset_path}")
+            expect("list" in body.lower(), f"List asset not served: {asset_path}")
 
         applied = http_json(
             server.base_url,

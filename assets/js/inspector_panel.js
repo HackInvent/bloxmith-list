@@ -76,7 +76,7 @@ export function mount(root, api) {
         applyButton.disabled = true;
       }
     }).catch((error) => {
-      api.log?.(`[error] Mise à jour Liste impossible: ${error.message}`);
+      api.log?.(`[error] List update failed: ${error.message}`);
     });
   };
 

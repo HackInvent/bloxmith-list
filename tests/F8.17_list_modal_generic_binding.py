@@ -46,7 +46,7 @@ def test_list_modal_generic_binding(page, server, _blocking_errors) -> None:
     node_before_apply = graph_node_by_id(page, node_id)
     expect(
         node_before_apply.get("config", {}).get("items") != ["alpha", "beta"],
-        "Le modal List ne doit pas persister les items avant Apply.",
+        "The List modal must not persist the items before Apply.",
     )
     page.locator("[data-list-action='apply']").click()
     page.wait_for_function(

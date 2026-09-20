@@ -66,7 +66,7 @@ def main() -> None:
         parsed = json.loads(str(output.get("value") or "[]"))
         expect(
             parsed == [{"item": "alpha"}, {"item": {"toto": "toto"}}, {"item": 42}],
-            "La sortie list wrapper n'est pas le JSON attendu.",
+            "The wrapper list output is not the expected JSON.",
         )
         expect(output.get("content_type") == "application/json", "The list content_type must be application/json.")
         expect("alpha" in str(run.get("worker_rows", {}).get("display-1", {}).get("received") or ""), "Display does not receive the list.")
