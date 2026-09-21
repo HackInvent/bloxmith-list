@@ -30,7 +30,7 @@ from block_test_packages import install_test_package, release_key
 
 
 def test_list_modal_generic_binding(page, server, _blocking_errors) -> None:
-    # Le modal est un module de release : la palette doit proposer la version installée.
+    # The modal is a release module: the palette must offer the installed version.
     model = install_test_package(server, "list")
     wait_for_app_ready(page, server.base_url)
     node_id = create_node(page, release_key(model))

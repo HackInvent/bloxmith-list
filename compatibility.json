@@ -5,7 +5,7 @@
   "maintained_by": "HackInvent",
   "source": {
     "algorithm": "block-source-v1",
-    "sha256": "c3a0682d7a42930a62c71f679a2afa84866fcd52ae9cadd28364458c9b81c957"
+    "sha256": "a42af993116f6fb4409b416ed11d687085a3a9c1d37cdde0c520ba84e3e53a23"
   },
   "bloxsmith_compatibility": [
     "1.0.9"
@@ -16,7 +16,7 @@
       "bloxsmith_version": "1.0.9",
       "framework_commit": "57e7ba724774c646df175ab870afd601d8aa4cd5",
       "framework_source_sha256": "48b1b447ea65fcc6e6b828b2a6b624febe02d878814142b18917e4a5fc40963e",
-      "tested_at": "2026-09-20T21:42:26.890965+00:00",
+      "tested_at": "2026-09-21T18:17:46.011263+00:00",
       "status": "passed",
       "installation_mode": "bundled",
       "suite_paths": [
@@ -26,7 +26,7 @@
         "tests/F8.17_list_modal_generic_binding.py"
       ],
       "suite_count": 4,
-      "report_sha256": "da6c073788f65e6667cec672ff5803590c9df776fe0a1f3467cf19691ca57030"
+      "report_sha256": "130258e60381600c1f1e092c12d6a8e97320862485e132600c11859cc9d7b5e0"
     }
   ]
 }
