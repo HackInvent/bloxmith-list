@@ -376,7 +376,7 @@ class ListBlock(BlockDefinition):
         return BlockRuntimeResult(
             status="success",
             outputs=outputs,
-            logs=[f"[list] {context.node_id} -> {len(items)} item(s) emis en JSON wrapper item."],
+            logs=[f"[list] {context.node_id} -> {len(items)} item(s) emitted as JSON wrapper items."],
             last_message=payload,
             content_type=APPLICATION_JSON,
             worker_received=f"{len(items)} item(s)",
