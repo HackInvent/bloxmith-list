@@ -1,0 +1,19 @@
+{
+  "block.list.model.title": "Liste",
+  "block.list.pill": "Liste",
+  "block.list.modal_kicker": "Bloc Liste",
+  "block.list.modal_title": "Modifier les items",
+  "block.list.editor_hint": "Une ligne est un item. Ctrl+Entrée applique.",
+  "block.list.remove_empty": "Supprimer les lignes vides",
+  "block.list.clear_all": "Tout vider",
+  "block.list.textarea_placeholder": "Un item par ligne...",
+  "block.list.tab_items": "Liste",
+  "block.list.tab_attributes": "Attributs",
+  "block.list.items_label": "Items de la liste",
+  "block.list.add_item": "+ Ajouter un item",
+  "block.list.apply_list": "Appliquer la liste",
+  "block.list.valid_items.one": "{count} item valide",
+  "block.list.valid_items.other": "{count} items valides",
+  "block.list.empty_lines.one": "{count} ligne vide ignorée",
+  "block.list.empty_lines.other": "{count} lignes vides ignorées"
+}

@@ -1,32 +1,32 @@
 <div class="modal-panel list-items-modal cw-list-modal" data-block-runtime-refresh="autonomous" role="dialog" aria-modal="true" aria-labelledby="listItemsModalTitle">
   <div class="modal-header">
     <div>
-      <span class="panel-kicker">List block</span>
-      <h2 id="listItemsModalTitle">Edit the items</h2>
+      <span class="panel-kicker" data-i18n="block.list.modal_kicker">List block</span>
+      <h2 id="listItemsModalTitle" data-i18n="block.list.modal_title">Edit the items</h2>
     </div>
     <div class="modal-actions">
-      <button class="solid-btn" data-list-action="apply" data-block-apply type="button" disabled>Apply</button>
-      <button class="ghost-btn" data-list-action="close" type="button">Close</button>
+      <button class="solid-btn" data-list-action="apply" data-block-apply type="button" disabled data-i18n="ui.block_kit.apply">Apply</button>
+      <button class="ghost-btn" data-list-action="close" type="button" data-i18n="ui.block_kit.close">Close</button>
     </div>
   </div>
   <div class="list-items-modal-body" data-list-modal-root>
     <div class="list-items-modal-toolbar">
       <div>
         <span data-list-context>{{ title }}</span>
-        <span class="list-items-modal-hint">One line is one item. Ctrl+Enter applies.</span>
+        <span class="list-items-modal-hint" data-i18n="block.list.editor_hint">One line is one item. Ctrl+Enter applies.</span>
       </div>
       <span class="list-items-modal-count" data-list-count>{{ count_label }}</span>
     </div>
     <section class="ports-editor-section">
-      <div class="ports-editor-header"><span class="group-label">Identity</span></div>
+      <div class="ports-editor-header"><span class="group-label" data-i18n="ui.block_kit.identity">Identity</span></div>
       <div class="field-group">
-        <label>Block name</label>
+        <label data-i18n="ui.block_kit.block_name">Block name</label>
         <input data-block-title-field type="text" autocomplete="off" value="{{ title }}" />
       </div>
     </section>
     <div class="list-items-modal-actions">
-      <button class="ghost-btn" data-list-action="remove-empty" type="button">Supprimer lignes vides</button>
-      <button class="ghost-btn danger-btn" data-list-action="clear" type="button">Tout vider</button>
+      <button class="ghost-btn" data-list-action="remove-empty" type="button" data-i18n="block.list.remove_empty">Remove empty lines</button>
+      <button class="ghost-btn danger-btn" data-list-action="clear" type="button" data-i18n="block.list.clear_all">Clear everything</button>
     </div>
     <div class="list-items-editor-shell">
       <pre class="list-items-line-numbers" data-list-line-numbers aria-hidden="true">{{ line_numbers }}</pre>
@@ -35,7 +35,7 @@
         data-list-textarea
         spellcheck="false"
         wrap="soft"
-        placeholder="One item per line..."
+        placeholder="One item per line..." data-i18n-placeholder="block.list.textarea_placeholder"
       >{{ items_text }}</textarea>
     </div>
   </div>

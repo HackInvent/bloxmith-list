@@ -1,0 +1,19 @@
+{
+  "block.list.model.title": "List",
+  "block.list.pill": "List",
+  "block.list.modal_kicker": "List block",
+  "block.list.modal_title": "Edit the items",
+  "block.list.editor_hint": "One line is one item. Ctrl+Enter applies.",
+  "block.list.remove_empty": "Remove empty lines",
+  "block.list.clear_all": "Clear everything",
+  "block.list.textarea_placeholder": "One item per line...",
+  "block.list.tab_items": "List",
+  "block.list.tab_attributes": "Attributes",
+  "block.list.items_label": "List items",
+  "block.list.add_item": "+ Add an item",
+  "block.list.apply_list": "Apply the list",
+  "block.list.valid_items.one": "{count} valid item",
+  "block.list.valid_items.other": "{count} valid items",
+  "block.list.empty_lines.one": "{count} empty line ignored",
+  "block.list.empty_lines.other": "{count} empty lines ignored"
+}

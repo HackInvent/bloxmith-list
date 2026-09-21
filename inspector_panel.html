@@ -9,9 +9,9 @@
       <span class="inspector-node-tag">{{ node_tag }}</span>
     </div>
     <div class="inspector-tabs">
-      <button class="inspector-tab {{ list_active }}" data-list-inspector-tab="items" type="button">Liste</button>
-      <button class="inspector-tab {{ attributes_active }}" data-list-inspector-tab="attributes" type="button">Attributs</button>
-      <button class="inspector-tab {{ ports_active }} {{ ports_tab_hidden }}" data-inspector-tab="ports" type="button" {{ ports_tab_disabled }}>Ports</button>
+      <button class="inspector-tab {{ list_active }}" data-list-inspector-tab="items" type="button" data-i18n="block.list.tab_items">List</button>
+      <button class="inspector-tab {{ attributes_active }}" data-list-inspector-tab="attributes" type="button" data-i18n="block.list.tab_attributes">Attributes</button>
+      <button class="inspector-tab {{ ports_active }} {{ ports_tab_hidden }}" data-inspector-tab="ports" type="button" {{ ports_tab_disabled }} data-i18n="ui.block_kit.ports">Ports</button>
     </div>
   </div>
 
@@ -19,15 +19,15 @@
     <div class="cw-list-inspector-view" data-list-inspector-view="items">
       <div class="ports-editor-section">
         <div class="ports-editor-header">
-          <span class="group-label">List items</span>
-          <button class="ghost-btn add-port-btn" data-list-inspector-action="add" type="button">
+          <span class="group-label" data-i18n="block.list.items_label">List items</span>
+          <button class="ghost-btn add-port-btn" data-list-inspector-action="add" type="button" data-i18n="block.list.add_item">
             + Add an item
           </button>
         </div>
         <div class="list-items-editor" data-list-items-editor>{{ rows_html }}</div>
       </div>
       <div class="inspector-actions cw-list-apply-row">
-        <button class="solid-btn" data-list-inspector-apply type="button" disabled>Apply the list</button>
+        <button class="solid-btn" data-list-inspector-apply type="button" disabled data-i18n="block.list.apply_list">Apply the list</button>
       </div>
       <div class="inspector-copy">
         Edit the items, then click <strong>Apply the list</strong>. Every line is parsed as JSON when possible,
@@ -37,13 +37,13 @@
 
     <div class="cw-list-inspector-view hidden" data-list-inspector-view="attributes">
       <div class="field-group {{ title_hidden }}">
-        <label>Node name</label>
+        <label data-i18n="ui.block_kit.node_name">Node name</label>
         <input data-node-title-input type="text" placeholder="{{ node_title_placeholder }}" value="{{ node_title }}" />
       </div>
 
       <div class="inspector-actions {{ actions_hidden }}">
-        <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button">Duplicate</button>
-        <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button">Delete the block</button>
+        <button class="ghost-btn {{ duplicate_hidden }}" data-block-action="duplicate" type="button" data-i18n="ui.block_kit.duplicate">Duplicate</button>
+        <button class="danger-btn {{ delete_hidden }}" data-block-action="delete" type="button" data-i18n="ui.block_kit.delete_block">Delete the block</button>
       </div>
 
       <div class="inspector-copy">
@@ -61,23 +61,22 @@
   <div class="inspector-view {{ ports_hidden }}" data-inspector-panel-tab="ports">
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Inputs</span>
+        <span class="group-label" data-i18n="ui.block_kit.inputs">Inputs</span>
         <span class="ports-editor-actions">
           <button class="ghost-btn add-port-btn {{ add_mcp_input_hidden }}" data-add-mcp-input-port type="button" {{ add_mcp_input_disabled }}>+ MCP</button>
-          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }}>+ Add an input</button>
+          <button class="ghost-btn add-port-btn {{ add_input_hidden }}" data-add-input-port type="button" {{ add_input_disabled }} data-i18n="ui.block_kit.add_input">+ Add an input</button>
         </span>
       </div>
       <div class="ports-editor-list">{{ inputs_html }}</div>
     </div>
     <div class="ports-editor-section">
       <div class="ports-editor-header">
-        <span class="group-label">Outputs</span>
-        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }}>+ Add an output</button>
+        <span class="group-label" data-i18n="ui.block_kit.outputs">Outputs</span>
+        <button class="ghost-btn add-port-btn {{ add_output_hidden }}" data-add-output-port type="button" {{ add_output_disabled }} data-i18n="ui.block_kit.add_output">+ Add an output</button>
       </div>
       <div class="ports-editor-list">{{ outputs_html }}</div>
     </div>
-    <div class="inspector-copy">
-      Names are normalized automatically: lowercase, spaces replaced with <code>_</code>.
-    </div>
+    <div class="inspector-copy" data-i18n="ui.block_kit.port_names_hint">
+      Names are normalized automatically: lowercase, spaces replaced by _.</div>
   </div>
 </div>

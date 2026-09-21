@@ -283,13 +283,17 @@ class ListBlock(BlockDefinition):
         """
         stats = self.list_text_stats(value)
         valid_count = stats["valid_count"]
-        item_label = f"{valid_count} item{'s' if valid_count > 1 else ''} valide{'s' if valid_count > 1 else ''}"
+        item_label = self.translate(
+            "block.list.valid_items", {"count": valid_count},
+            fallback=f"{valid_count} valid item{'s' if valid_count > 1 else ''}",
+        )
         empty_count = stats["empty_count"]
         if empty_count:
-            return (
-                f"{item_label} · {empty_count} ligne{'s' if empty_count > 1 else ''} "
-                f"vide{'s' if empty_count > 1 else ''} ignored{'s' if empty_count > 1 else ''}"
+            ignored = self.translate(
+                "block.list.empty_lines", {"count": empty_count},
+                fallback=f"{empty_count} empty line{'s' if empty_count > 1 else ''} ignored",
             )
+            return f"{item_label} · {ignored}"
         return item_label
 
     def line_numbers_for_text(self, value: str) -> str:

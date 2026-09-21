@@ -31,10 +31,18 @@ function getStats(value) {
  * @param {{validCount: number, emptyCount: number}} stats - Statistics returned by getStats.
  * @returns {string} Localized counter label.
  */
-function formatCount(stats) {
-  const itemLabel = `${stats.validCount} valid item${stats.validCount > 1 ? "s" : ""}`;
+function formatCount(stats, element) {
+  // The counter is not one static label, so it is resolved against the catalog of the
+  // release that owns the surface, exactly as a marker would be.
+  const release = element?.closest?.("[data-block-release]")?.dataset?.blockRelease || "";
+  const validFallback = `${stats.validCount} valid item${stats.validCount > 1 ? "s" : ""}`;
+  const itemLabel = window.CWI18n?.t?.(
+    "block.list.valid_items", { count: stats.validCount }, validFallback, release) ?? validFallback;
   if (stats.emptyCount > 0) {
-    return `${itemLabel} · ${stats.emptyCount} empty line${stats.emptyCount > 1 ? "s" : ""} ignored`;
+    const ignoredFallback = `${stats.emptyCount} empty line${stats.emptyCount > 1 ? "s" : ""} ignored`;
+    const ignored = window.CWI18n?.t?.(
+      "block.list.empty_lines", { count: stats.emptyCount }, ignoredFallback, release) ?? ignoredFallback;
+    return `${itemLabel} · ${ignored}`;
   }
   return itemLabel;
 }
@@ -57,7 +65,10 @@ function syncEditor(root) {
     lineNumbers.scrollTop = textarea.scrollTop;
   }
   if (count) {
-    count.textContent = formatCount(stats);
+    window.CWI18n?.setText?.(count, formatCount(stats, count));
+    if (!window.CWI18n?.setText) {
+      count.textContent = formatCount(stats, count);
+    }
   }
 }
 
