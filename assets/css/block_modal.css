@@ -6,7 +6,7 @@
 
 [data-block-release="list@0.1.0"] .cw-list-modal .list-items-modal-body {
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr);
+  grid-template-rows: auto auto auto minmax(180px, 1fr);
   gap: 12px;
   min-height: min(70vh, 720px);
   padding: 18px;

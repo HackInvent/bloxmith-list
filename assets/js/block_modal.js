@@ -1,3 +1,5 @@
+import { withProperties } from "./properties.js";
+
 /**
  * Role: Mounts the list block modal frontend.
  * File Name: block_modal.js
@@ -78,7 +80,7 @@ function syncEditor(root) {
  * @param {HTMLElement} root - Mounted modal root.
  * @param {object} api - Generic block UI API exposing block actions and modal close.
  */
-export function mount(root, api) {
+function mountOwned(root, api) {
   const textarea = root.querySelector("[data-list-textarea]");
   const applyButton = root.querySelector("[data-list-action='apply']");
   if (!textarea) {
@@ -177,4 +179,9 @@ export function mount(root, api) {
 
   syncEditor(root);
   textarea.focus();
+}
+
+/** Keep the block behavior and add properties-only accessibility. */
+export function mount(root, ...args) {
+  return withProperties(mountOwned).call(this, root, ...args);
 }

@@ -1,3 +1,5 @@
+import { withProperties } from "./properties.js";
+
 /**
  * Role: Mounts the list block inspector panel frontend.
  * File Name: inspector_panel.js
@@ -48,7 +50,7 @@ function selectLocalTab(root, tab) {
  * @param {HTMLElement} root - Mounted inspector root.
  * @param {object} api - Generic block UI API exposing block actions.
  */
-export function mount(root, api) {
+function mountOwned(root, api) {
   const applyButton = root.querySelector("[data-list-inspector-apply]");
   let dirty = false;
   selectLocalTab(root, "items");
@@ -133,4 +135,9 @@ export function mount(root, api) {
       api.log?.(`[error] Action Liste impossible: ${error.message}`);
     });
   });
+}
+
+/** Keep the block behavior and add properties-only accessibility. */
+export function mount(root, ...args) {
+  return withProperties(mountOwned).call(this, root, ...args);
 }
