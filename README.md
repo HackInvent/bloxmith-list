@@ -8,6 +8,10 @@
 Verified BloxSmith versions: **1.0.9** (bundled-block tests; see [test evidence](compatibility.json)).
 <!-- block-metadata:end -->
 
+[![LIST — Emits a configured list as JSON.](media/thumbnail.webp)](media/cover.png)
+
+*Concept illustration. [Artwork and generation prompt](media/README.md).*
+
 
 ## Role
 
